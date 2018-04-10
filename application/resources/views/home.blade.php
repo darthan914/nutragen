@@ -63,6 +63,8 @@
 			    display: inline-block;
 			    text-align: center;
 			    line-height: 45px;
+			    margin-top: 20px;
+			    margin-bottom: 20px;
 			}
 
 			.heading-underline::after
