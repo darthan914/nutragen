@@ -1,23 +1,23 @@
 @font-face {
     font-family: 'Quicksand';
-    src: url('Quicksand-Regular.ttf');
+    src: url('Quicksand-Regular.otf');
 }
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('Quicksand-Italic.ttf');
+    src: url('Quicksand-Italic.otf');
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('Quicksand-Light.ttf');
+    src: url('Quicksand-Light.otf');
     font-weight: 300;
 }
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('Quicksand-LightItalic.ttf');
+    src: url('Quicksand-LightItalic.otf');
     font-weight: 300;
     font-style: italic;
 
@@ -25,13 +25,13 @@
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('Quicksand-Bold.ttf');
+    src: url('Quicksand-Bold.otf');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'Quicksand';
-    src: url('Quicksand-BoldItalic.ttf');
+    src: url('Quicksand-BoldItalic.otf');
     font-weight: bold;
     font-style: italic;
 }
