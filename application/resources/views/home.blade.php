@@ -131,8 +131,8 @@
 			    background-image: url(frontend/images/white-wheat-diagonal.png);
 			    background-repeat: no-repeat, repeat;
 			    background-size: 113%;
-			    background-position: center center;
-			    height: 1160px;
+			    background-position: bottom center;
+			    height: 1265px;
 			    width: 100%;
 			    z-index: -1;
         	}
