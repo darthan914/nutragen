@@ -97,7 +97,7 @@
                             </h4>
                             <ul class="sidebar">
                                 @foreach($latest as $list)
-                                <li><a href="#">{{ $list->title }}</a></li>
+                                <li><a href="{{ route('frontend.in-news', $list->slug_url) }}">{{ $list->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
