@@ -90,84 +90,40 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
+                        @forelse($news as $list)
                         <div class="container-fluid mini-spacing">
-                            <div class="news-image" style="background-image: url('{{ asset('frontend/images/_0000_shutterstock_491996893.png') }}');">
+                            <div class="news-image" style="background-image: url('{{ asset($list->photo) }}');">
                                 
                             </div>
 
                             <div class="news-datetime">
-                                <b>March 17, 2018, at 1:30 PM</b>
+                                <b>{{ date('d F Y H:i:s', strtotime($list->created_at)) }}</b>
                             </div>
 
                             <div class="news-title">
                                 <h4>
-                                    Lorem Ipsum dolor sit amet
+                                    {{ $list->title }}
                                 </h4>
                             </div>
 
                             <div class="news-content">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    <a href="{{ route('frontend.in-news') }}" class="news-readmore">Read More...</a>
+                                    {{ $list->description }}
+                                    <a href="{{ route('frontend.in-news', $list->slug_url) }}" class="news-readmore">Read More...</a>
                                 </p>
                             </div>
                         </div>
+                        @empty
+                        <p>No News Available</p>
+                        @endforelse
 
-                        <div class="container-fluid mini-spacing">
-                            <div class="news-image" style="background-image: url('{{ asset('frontend/images/_0001_shutterstock_525192649.png') }}');">
-                                
-                            </div>
+                        {{ $news->links('vendor.pagination.default') }}
 
-                            <div class="news-datetime">
-                                <b>March 17, 2018, at 1:30 PM</b>
-                            </div>
-
-                            <div class="news-title">
-                                <h4>
-                                    Lorem Ipsum dolor sit amet
-                                </h4>
-                            </div>
-
-                            <div class="news-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    <a href="{{ route('frontend.in-news') }}" class="news-readmore">Read More...</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="container-fluid mini-spacing">
-                            <div class="news-image" style="background-image: url('{{ asset('frontend/images/_0002_shutterstock_567294487.png') }}');">
-                                
-                            </div>
-
-                            <div class="news-datetime">
-                                <b>March 17, 2018, at 1:30 PM</b>
-                            </div>
-
-                            <div class="news-title">
-                                <h4>
-                                    Lorem Ipsum dolor sit amet
-                                </h4>
-                            </div>
-
-                            <div class="news-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    <a href="{{ route('frontend.in-news') }}" class="news-readmore">Read More...</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <ul class="pagination">
-                            {{-- Previous Page Link --}}
+                        {{-- <ul class="pagination">
                                 <li class="disabled"><span>Prev Page</span></li>
 
-                            {{-- Pagination Elements --}}
-                                {{-- "Three Dots" Separator --}}
                                     <li class="disabled"><span>...</span></li>
 
-                                {{-- Array Of Links --}}
                                     <li class="active"><span>1</span></li>
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
@@ -176,9 +132,8 @@
 
                                 <li class="disabled"><span>...</span></li>
 
-                            {{-- Next Page Link --}}
                                 <li><a href="#" rel="next">Next Page</a></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     <div class="col-md-4">
                         <div>
@@ -186,10 +141,9 @@
                                 Latest News
                             </h4>
                             <ul class="sidebar">
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
+                                @foreach($latest as $list)
+                                <li><a href="#">{{ $list->title }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
 
@@ -198,10 +152,9 @@
                                 Archives
                             </h4>
                             <ul class="sidebar">
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
+                                @foreach($archive as $list)
+                                <li><a href="#">{{ date('d F Y', strtotime($list->created_at)) }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

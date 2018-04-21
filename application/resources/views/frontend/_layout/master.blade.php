@@ -95,6 +95,12 @@
 			    line-height: 45px;
 			    margin-top: 20px;
 			    margin-bottom: 20px;
+			    border: none;
+			}
+
+			.form-control
+			{
+				border-radius: 1.25rem;
 			}
 
 			.heading-underline::after
@@ -197,32 +203,32 @@
 	            </button>
 	            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                <ul class="navbar-nav ml-auto">
-	                    <li class="nav-item {{ Route::is('frontend.about.*') ? 'active' : '' }}">
+	                    <li class="nav-item {{ Route::is('frontend.about*') ? 'active' : '' }}">
 	                        <a class="nav-link" href="{{ route('frontend.about') }}">
 	                            About
 	                        </a>
 	                    </li>
-	                    <li class="nav-item {{ Route::is('frontend.product.*') ? 'active' : '' }}">
+	                    <li class="nav-item {{ Route::is('frontend.product*') ? 'active' : '' }}">
 	                        <a class="nav-link" href="{{ route('frontend.product') }}">
 	                            Products
 	                        </a>
 	                    </li>
-	                    <li class="nav-item {{ Route::is('frontend.distribution.*') ? 'active' : '' }}">
+	                    <li class="nav-item {{ Route::is('frontend.distribution*') ? 'active' : '' }}">
 	                        <a class="nav-link" href="{{ route('frontend.distribution') }}">
 	                            Distribution
 	                        </a>
 	                    </li>
-	                    <li class="nav-item {{ Route::is('frontend.service.*') ? 'active' : '' }}">
+	                    <li class="nav-item {{ Route::is('frontend.service*') ? 'active' : '' }}">
 	                        <a class="nav-link" href="{{ route('frontend.service') }}">
 	                            Services
 	                        </a>
 	                    </li>
-	                    <li class="nav-item {{ Route::is('frontend.news.*') ? 'active' : '' }}">
+	                    <li class="nav-item {{ Route::is('frontend.news*') ? 'active' : '' }}">
 	                        <a class="nav-link" href="{{ route('frontend.news') }}">
 	                            News
 	                        </a>
 	                    </li>
-	                    <li class="nav-item {{ Route::is('frontend.contact.*') ? 'active' : '' }}">
+	                    <li class="nav-item {{ Route::is('frontend.contact*') ? 'active' : '' }}">
 	                        <a class="nav-link" href="{{ route('frontend.contact') }}">
 	                            Contact Us
 	                        </a>

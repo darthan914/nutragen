@@ -63,11 +63,11 @@
     <div class="content">
         <div class="container-fluid bootstrap full mini-spacing">
             <h1 class="heading-underline text-center white-color">
-                Lorem Ipsum dolor sit amet
+                {{ $news->title }}
             </h1>
         </div>
 
-        <div class="container-fluid bootstrap full news-image" style="background-image: url('{{ asset('frontend/images/_0000_shutterstock_491996893.png') }}');">
+        <div class="container-fluid bootstrap full news-image" style="background-image: url('{{ asset($news->photo) }}');">
         </div>
 
         <div class="container-fluid bootstrap full mini-spacing white-background">
@@ -76,29 +76,17 @@
                     <div class="col-md-8">
                         <div class="container-fluid">
                             <div class="news-datetime">
-                                <b>March 17, 2018, at 1:30 PM</b>
+                                <b>{{ $news->created_at }}</b>
                             </div>
 
                             <div class="news-title">
                                 <h4>
-                                    Lorem Ipsum dolor sit amet
+                                    {{ $news->title }}
                                 </h4>
                             </div>
 
                             <div class="news-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                </p>
-
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ante a diam varius efficitur. Praesent eget porttitor velit, vitae gravida odio. Nullam pulvinar sed dolor quis efficitur. Morbi ac ultrices leo. 
-                                </p>
+                                {{ $news->content }}
                             </div>
                         </div>
                     </div>
@@ -108,10 +96,9 @@
                                 Latest News
                             </h4>
                             <ul class="sidebar">
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
+                                @foreach($latest as $list)
+                                <li><a href="#">{{ $list->title }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
 
@@ -120,10 +107,9 @@
                                 Archives
                             </h4>
                             <ul class="sidebar">
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
-                                <li><a href="#">loream ipsum dolor sit amet</a></li>
+                                @foreach($archive as $list)
+                                <li><a href="#">{{ date('d F Y', strtotime($list->created_at)) }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

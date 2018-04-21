@@ -178,7 +178,17 @@
 
         .product .logo .name
         {
-            height: 100px;
+            height: 150px;
+            display: inline-block;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .product .logo .name .helper
+        {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
         }
 
         .product .logo .shadow
@@ -313,10 +323,9 @@
                 Certification
             </h2>
             <p class="text-center">
-                <img src="{{ asset('frontend/images/gmp.png') }}" height="100">
-                <img src="{{ asset('frontend/images/halal.png') }}" height="100">
-                <img src="{{ asset('frontend/images/fssc.png') }}" height="50">
-                <img src="{{ asset('frontend/images/iso.png') }}" height="50">
+                @foreach($license as $list)
+                <img src="{{ asset($list->image_logo) }}" height="{{ $list->image_height ?? 100 }}">
+                @endforeach
             </p>
         </div>
 
@@ -368,37 +377,20 @@
             </h2>
             <div class="container">
                 <div class="row mini-spacing">
+                    @foreach($product as $list)
                     <div class="col-md-3 text-center">
                         <div class="logo">
-                            <img src="{{ asset('frontend/images/gofress-logo.png') }}" class="name"> <br/>
+                            <div class="name">
+                                <span class="helper"></span>
+                                <img src="{{ asset($list->image_logo) }}" height="{{ $list->image_logo_height ?? 100 }}">
+                            </div>
+                             <br/>
                             <img src="{{ asset('frontend/images/shadow-product.png') }}">
                         </div>
-                        <p>Now you can have an instantly fresh breath in no time!</p>
+                        <p>{{ $list->short_description }}</p>
                     </div>
+                    @endforeach
 
-                    <div class="col-md-3 text-center">
-                        <div class="logo">
-                            <img src="{{ asset('frontend/images/gofress-logo.png') }}" class="name"> <br/>
-                            <img src="{{ asset('frontend/images/shadow-product.png') }}">
-                        </div>
-                        <p>Now you can have an instantly fresh breath in no time!</p>
-                    </div>
-
-                    <div class="col-md-3 text-center">
-                        <div class="logo">
-                            <img src="{{ asset('frontend/images/gofress-logo.png') }}" class="name"> <br/>
-                            <img src="{{ asset('frontend/images/shadow-product.png') }}">
-                        </div>
-                        <p>Now you can have an instantly fresh breath in no time!</p>
-                    </div>
-
-                    <div class="col-md-3 text-center">
-                        <div class="logo">
-                            <img src="{{ asset('frontend/images/gofress-logo.png') }}" class="name"> <br/>
-                            <img src="{{ asset('frontend/images/shadow-product.png') }}">
-                        </div>
-                        <p>Now you can have an instantly fresh breath in no time!</p>
-                    </div>
                 </div>
                 <div class="text-center mini-spacing">
                     <a href="#" class="button">Read More</a>
@@ -412,16 +404,9 @@
             </h2>
             <div class="container">
                 <p class="text-center">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
+                    @foreach($partner as $list)
+                    <img src="{{ asset($list->image_logo) }}" height="{{ $list->image_height ?? 100 }}">
+                    @endforeach
                 </p>
             </div>
         </div>

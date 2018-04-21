@@ -12,6 +12,23 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        '*/action*',
+        '*/get*',
+        
+        '*/datatables*',
+        '*/ajax*',
+
+        '/invoice/noAdmin',
+        '/invoice/checkFinance',
+        '/invoice/noteInvoice',
+        '/invoice/checkMaster',
+
+        '/pr/changePurchasing',
+        '/pr/checkAudit',
+        '/pr/checkFinance',
+        '/pr/noteAudit',
+        '/pr/getSpkItem',
+
+        '*/config/update',
     ];
 }

@@ -18,7 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->text('remember_token')->nullable();
+            $table->boolean('active')->default(0);
+            $table->integer('id_role');
+            $table->text('grant')->nullable();
+            $table->text('denied')->nullable();
+            $table->integer('leader')->nullable();
+            $table->integer('level')->default(0);
+            $table->text('avatar')->nullable();
             $table->timestamps();
         });
     }

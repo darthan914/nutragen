@@ -65,16 +65,9 @@
         <div class="container-fluid white-background text-center mini-spacing" style="">
             <div class="container">
                 <p class="text-center spacing">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
-                    <img src="{{ asset('frontend/images/ralali-logo.png') }}" width="250">
+                    @foreach($distribution as $list)
+                    <img src="{{ asset($list->image_logo) }}" height="{{ $list->image_height ?? 30 }}">
+                    @endforeach
                 </p>
                 
             </div>

@@ -131,7 +131,7 @@
                 <div class="wheat"></div>
 
                 <div class="container">
-                    <div class="spacing row">
+                    <div class="row">
                         <div class="col-md-6">
                             <h2 class="white-color">
                                 Good Nutrition <br/>
