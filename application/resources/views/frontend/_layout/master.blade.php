@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+    	<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    @yield('meta')
+
+	    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+
         <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"></link>
 		<link href="{{ asset('frontend/fonts/quicksand.css') }}" rel="stylesheet"></link>
 		<link href="{{ asset('frontend/fonts/satisfy.css') }}" rel="stylesheet"></link>
 		<link href="{{ asset('frontend/fonts/nunito.css') }}" rel="stylesheet"></link>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 		<title>@yield('title')</title>
 
@@ -132,8 +140,8 @@
 
 			.mini-spacing
 			{
-				padding-top: 35px;
-				padding-bottom: 35px;
+				padding-top: 25px;
+			    padding-bottom: 25px;
 			}
 
 			/*Navbar Nutragen*/
@@ -180,6 +188,43 @@
 			    padding: 170px 0px 30px;
 			}
 
+			@media(min-width: 992px)
+			{
+				.img-large
+				{
+					height: 250px;
+				}
+
+				.img-medium
+				{
+					height: 100px;
+				}
+
+				.img-small
+				{
+					height: 55px;
+				}
+			}
+			
+
+			@media(max-width: 991px)
+			{
+				.img-large
+				{
+					width: 100%;
+				}
+
+				.img-medium
+				{
+					height: 100px;
+				}
+
+				.img-small
+				{
+					height: 40px;
+				}
+			}
+
 			/*end Footer*/
 		</style>
 
@@ -188,6 +233,8 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 		<script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+		
 
 		@yield('headscript')
     </head>
@@ -241,60 +288,77 @@
 
         @yield('content')
 
-        <div class="footer container-fluid bootstrap" style="background-image: url({{ asset('frontend/images/bottom-hill.png') }});">
-        	<h2 class="text-center mini-spacing">
-        		<img src="{{ asset('frontend/images/nutragen-logo.png') }}" height="50">
-        	</h2>
+        
 
-        	<div class="container mini-spacing">
-        		<div class="row">
-	        		<div class="col-md-3">
-	        			<p>
-	        				<b>Head Office & Logistic Warehouse</b><br/>
-							Jl. Alternatif Sentul, <br/>
-							RT 01/RW01 Sentul<br/>
-							Babakan Madang Bogor
-	        			</p>
-	        		</div>
-	        		<div class="col-md-3">
-	        			<p>
-	        				<b>Head Office & Logistic Warehouse</b><br/>
-							Jl. Alternatif Sentul, <br/>
-							RT 01/RW01 Sentul<br/>
-							Babakan Madang Bogor
-	        			</p>
-	        		</div>
-	        		<div class="col-md-3">
-	        			<p>
-	        				<table>
-	        					<tr>
-	        						<td><img src="{{ asset('frontend/images/phone.png') }}" height="30px"></td>
-	        						<td>
-	        							<p>+0000000000000</p>
-	        							<p>+0000000000000</p>
-		        					</td>
-	        					</tr>
-	        				</table>
-	        			</p>
-	        		</div>
-	        		<div class="col-md-3">
-	        			<p>
-	        				<b>Follow Us</b> <br/>
-							<a href="#"><img src="{{ asset('frontend/images/twitter-logo.png') }}" height="50px"></a>
-							<a href="#"><img src="{{ asset('frontend/images/facebook-logo.png') }}" height="50px"></a>
-	        			</p>
-	        		</div>
+	        <div class="footer container-fluid bootstrap" style="background-image: url({{ asset('frontend/images/bottom-hill.png') }});">
+	        	<h2 class="text-center mini-spacing">
+	        		<img src="{{ asset('frontend/images/nutragen-logo.png') }}" height="50">
+	        	</h2>
+
+	        	<div class="container ">
+	        		<div class="row">
+		        		<div class="col-md-3 mini-spacing">
+		        			<p>
+		        				<b>Head Office & Logistic Warehouse</b><br/>
+								Jl. Alternatif Sentul, <br/>
+								RT 01, RW 01 Sentul<br/>
+								Babakan Madang Bogor
+		        			</p>
+		        		</div>
+		        		<div class="col-md-3 mini-spacing">
+		        			<p>
+		        				<b>Marketing Office</b><br/>
+								Ruko Cempaka Mas Blok J1-J2, <br/>
+								Jl. Let. Jend. Suprapto<br/>
+								Cempaka Putih <br/>
+								Jakarta 10640, Indonesia
+		        			</p>
+		        		</div>
+		        		<div class="col-md-3 mini-spacing">
+		        			<p>
+		        				<table>
+		        					<tr>
+		        						<td><img src="{{ asset('frontend/images/phone.png') }}" height="30px"></td>
+		        						<td>
+		        							<p>+62 21 4288 6688</p>
+		        							<p>+62 21 4288 6676</p>
+			        					</td>
+		        					</tr>
+		        				</table>
+		        			</p>
+		        		</div>
+		        		<div class="col-md-3 mini-spacing">
+		        			<p>
+		        				<b>Follow Us</b> <br/>
+								<a href="https://www.instagram.com/nutragenofficial/"><img src="{{ asset('frontend/images/instagram-logo.png') }}" height="50px"></a>
+								<a href="https://facebook.com/nutragenofficial/"><img src="{{ asset('frontend/images/facebook-logo.png') }}" height="50px"></a><br/>
+
+								<b>For Inquiry</b> <br/>
+								<a href="mailto:info@nutragen.co.id">info@nutragen.co.id</a><br/>
+
+								<b>For Export</b> <br/>
+								<a href="mailto:export@nutragen.co.id">export@nutragen.co.id</a><br/>
+		        			</p>
+		        		</div>
+		        	</div>
 	        	</div>
-        	</div>
 
-        	<div class="container-fluid company-footer text-center">
-        		<p class="white-color">
-        			© PT Nutragen Global Esana <br/>
-        			Web Development By <img src="{{ asset('frontend/images/amadeo-logo.png') }}" height="20">
-        		</p>
-        	</div>
-        </div>
+	        	<div class="container-fluid company-footer text-center">
+	        		<p class="white-color">
+	        			© PT Nutragen Global Esana <br/>
+	        			Web Development By <img src="{{ asset('frontend/images/amadeo-logo.png') }}" height="20">
+	        		</p>
+	        	</div>
+	        </div>
+	    
     </body>
 
+    <script src="{{ asset('frontend/vendor/jquery-aniview-master/dist/jquery.aniview.js') }}"></script>
+    <script type="text/javascript">
+    	$(function() {
+    		$('.aniview').AniView();
+    	});
+    </script>
     @yield('script')
+    
 </html>

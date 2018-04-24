@@ -73,13 +73,15 @@
             <div class="container">
                 <div class="row mini-spacing">
                     @foreach($product as $list)
-                    <div class="col-md-3 text-center">
+                    <div class="col-lg-3 text-center">
                         <div class="logo">
-                            <div class="name">
-                                <span class="helper"></span>
-                                <img src="{{ asset($list->image_logo) }}" height="{{ $list->image_logo_height ?? 100 }}">
+                            <div class="aniview" data-av-animation="fadeInDown">
+                                <div class="name">
+                                    <span class="helper"></span>
+                                    <img src="{{ asset($list->image_logo) }}" class="img-medium" style="{{ ($list->image_logo_height ? 'height: '.$list->image_logo_height.'px;' : '') }}">
+                                </div>
                             </div>
-                             <br/>
+                            <br/>
                             <img src="{{ asset('frontend/images/shadow-product.png') }}">
                         </div>
                         <p>{{ $list->short_description }}</p>

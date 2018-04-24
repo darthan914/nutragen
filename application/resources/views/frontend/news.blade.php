@@ -30,7 +30,7 @@
         /*News*/
         .news-image
         {
-            width: 500px;
+            width: 100%;
             height: 300px;
             background-size: cover;
             background-repeat: no-repeat;

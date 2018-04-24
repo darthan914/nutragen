@@ -34,34 +34,47 @@
             </h2>
             <div class="row">
                 <div class="col-md-4 mini-spacing">
-                    <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                    <h3>Sales Team (Independents)</h3>
-                    <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
+                        <h3>Sales Team (Independents)</h3>
+                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    </div>
+                    
                 </div>
                 <div class="col-md-4 mini-spacing">
-                    <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                    <h3>Sales Team (Independents)</h3>
-                    <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
+                        <h3>Sales Team (Independents)</h3>
+                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
-                    <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                    <h3>Sales Team (Independents)</h3>
-                    <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
+                        <h3>Sales Team (Independents)</h3>
+                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
-                    <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                    <h3>Sales Team (Independents)</h3>
-                    <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
+                        <h3>Sales Team (Independents)</h3>
+                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
-                    <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                    <h3>Sales Team (Independents)</h3>
-                    <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
+                        <h3>Sales Team (Independents)</h3>
+                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
-                    <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                    <h3>Sales Team (Independents)</h3>
-                    <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
+                        <h3>Sales Team (Independents)</h3>
+                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,7 +83,7 @@
             <img src="{{ asset('frontend/images/bottom-round-shape.png') }}" width="100%">
         </div>
 
-        <div class="container-fluid bootstrap white-background mini-spacing" style="padding-bottom: 50px;">
+        <div class="container-fluid bootstrap white-background mini-spacing full" style="padding-bottom: 50px;">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6 text-center">

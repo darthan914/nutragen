@@ -40,35 +40,46 @@
         <div class="diagonal container-fluid bootstrap">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <img src="{{ asset('frontend/images/worldwide-n-nationwide-distribution.png') }}" width="60%">
+                    <div class="aniview" data-av-animation="flipInY">
+                        <img src="{{ asset('frontend/images/worldwide-n-nationwide-distribution.png') }}" width="60%">
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="container-fluid white-background text-center mini-spacing">
-            <h3>Traditional Channel</h3>
-            <p>
-                Local distributors, agents, direct selling teams in wet markets, canteens <br/>
-                and small shops.
-            </p>
+            <div class="aniview" data-av-animation="fadeIn">
+                <h3>Traditional Channel</h3>
+                <p>
+                    Local distributors, agents, direct selling teams in wet markets, canteens <br/>
+                    and small shops.
+                </p>
+            </div>
         </div>
 
         <div class="container-fluid white-background text-center mini-spacing">
-            <h3>Modern Market</h3>
-            <p>
-                <b>Hypermarket</b>: Lotte Mart, Giant, Carrefour, Hypermart<br/>
-                <b>Supermarket</b>: Alfamart, Indomart, Watson, and many more<br/>
-                <b>Special Outlet</b>: Pharmacies, Bakeries, Beauty Clinics, Caterings, Restaurants.
-            </p>
+            <div class="aniview" data-av-animation="fadeIn">
+                <h3>Modern Market</h3>
+                <p>
+                    <b>Hypermarket</b>: Lotte Mart, Giant, Carrefour, Hypermart<br/>
+                    <b>Supermarket</b>: Alfamart, Indomart, Watson, and many more<br/>
+                    <b>Special Outlet</b>: Pharmacies, Bakeries, Beauty Clinics, Caterings, Restaurants.
+                </p>
+            </div>
         </div>
 
         <div class="container-fluid white-background text-center mini-spacing" style="">
             <div class="container">
-                <p class="text-center spacing">
-                    @foreach($distribution as $list)
-                    <img src="{{ asset($list->image_logo) }}" height="{{ $list->image_height ?? 30 }}">
-                    @endforeach
-                </p>
+                <div class="aniview" data-av-animation="fadeIn">
+                    <p class="text-center spacing">
+                        @foreach($distribution as $list)
+                        <img src="{{ asset($list->image_logo) }}" class="img-small" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
+                        @endforeach
+                        @foreach($partner as $list)
+                        <img src="{{ asset($list->image_logo) }}" class="img-small" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
+                        @endforeach
+                    </p>
+                </div>
                 
             </div>
             

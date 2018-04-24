@@ -53,8 +53,9 @@ class PageController extends Controller
     public function distribution()
     {
     	$distribution = Distribution::where('flag_publish', 1)->get();
+        $partner = Partner::where('flag_publish', 1)->get();
 
-    	return view('frontend.distribution', compact('distribution'));
+    	return view('frontend.distribution', compact('distribution', 'partner'));
     }
 
     public function service()
