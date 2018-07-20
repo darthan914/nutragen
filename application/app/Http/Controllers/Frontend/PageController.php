@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Config;
 use App\Models\License;
 use App\Models\Product;
-use App\Models\Partner;
+use App\Models\Ecommerce;
 use App\Models\Distribution;
 use App\Models\News;
 use App\Models\Inbox;
@@ -33,9 +33,9 @@ class PageController extends Controller
     {
     	$license = License::where('flag_publish', 1)->get();
     	$product = Product::where('flag_publish', 1)->take(4)->get();
-    	$partner = Partner::where('flag_publish', 1)->get();
+    	$ecommerce = Ecommerce::where('flag_publish', 1)->get();
 
-    	return view('frontend.home', compact('license', 'product', 'partner'));
+    	return view('frontend.home', compact('license', 'product', 'ecommerce'));
     }
 
     public function about()
@@ -53,9 +53,9 @@ class PageController extends Controller
     public function distribution()
     {
     	$distribution = Distribution::where('flag_publish', 1)->get();
-        $partner = Partner::where('flag_publish', 1)->get();
+        $ecommerce = Ecommerce::where('flag_publish', 1)->get();
 
-    	return view('frontend.distribution', compact('distribution', 'partner'));
+    	return view('frontend.distribution', compact('distribution', 'ecommerce'));
     }
 
     public function service()
@@ -88,9 +88,9 @@ class PageController extends Controller
 
     public function contact()
     {
-    	$partner = Partner::where('flag_publish', 1)->get();
+    	$ecommerce = Ecommerce::where('flag_publish', 1)->get();
 
-    	return view('frontend.contact', compact('partner'));
+    	return view('frontend.contact', compact('ecommerce'));
     }
 
     public function send(Request $request)

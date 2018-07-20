@@ -1,7 +1,7 @@
 @extends('frontend._layout.master')
 
 @section('title')
-	Nutragen - Contact
+	Contact
 @endsection
 
 @section('style')
@@ -45,6 +45,13 @@
 
 @section('script')
 
+@endsection
+
+@section('meta')
+<meta name="og:title" content="{{ $contact_meta_name->value }}"/>
+<meta name="og:url" content="{{ $contact_meta_url->value }}"/>
+<meta name="og:image" content="{{ asset($contact_meta_image->value) }}"/>
+<meta name="og:description" content="{{ $contact_meta_description->value }}"/>
 @endsection
 
 @section('content')
@@ -112,8 +119,8 @@
             <div class="container">
                 <div class="aniview" data-av-animation="fadeIn">
                     <p class="text-center">
-                        @foreach($partner as $list)
-                        <img src="{{ asset($list->image_logo) }}" class="img-medium" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
+                        @foreach($ecommerce as $list)
+                        <img src="{{ asset($list->image_logo) }}" class="img-medium img-ecommerce" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
                         @endforeach
                     </p>
                 </div>

@@ -1,7 +1,7 @@
 @extends('frontend._layout.master')
 
 @section('title')
-    Nutragen - Distribution
+    Distribution
 @endsection
 
 @section('style')
@@ -33,6 +33,13 @@
 
 @section('script')
 
+@endsection
+
+@section('meta')
+<meta name="og:title" content="{{ $distribution_meta_name->value }}"/>
+<meta name="og:url" content="{{ $distribution_meta_url->value }}"/>
+<meta name="og:image" content="{{ asset($distribution_meta_image->value) }}"/>
+<meta name="og:description" content="{{ $distribution_meta_description->value }}"/>
 @endsection
 
 @section('content')
@@ -75,7 +82,7 @@
                         @foreach($distribution as $list)
                         <img src="{{ asset($list->image_logo) }}" class="img-small" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
                         @endforeach
-                        @foreach($partner as $list)
+                        @foreach($ecommerce as $list)
                         <img src="{{ asset($list->image_logo) }}" class="img-small" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
                         @endforeach
                     </p>

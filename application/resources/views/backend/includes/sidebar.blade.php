@@ -25,6 +25,10 @@
 				<ul class="nav side-menu">
 					<li class="{{ Route::is('backend.home*') ? 'active' : '' }}"><a href="{{ route('backend.home') }}"><i class="fa fa-home"></i>Home</a></li>
 
+					@can('edit-page')
+					<li class="{{ Route::is('backend.page*') ? 'active' : '' }}"><a href="{{ route('backend.page') }}"><i class="fa fa-book"></i>Page Management</a></li>
+					@endcan
+
 					@can('list-inbox')
 					<li class="{{ Route::is('backend.inbox*') ? 'active' : '' }}"><a href="{{ route('backend.inbox') }}"><i class="fa fa-envelope"></i>Inbox</a></li>
 					@endcan
@@ -33,8 +37,12 @@
 					<li class="{{ Route::is('backend.news*') ? 'active' : '' }}"><a href="{{ route('backend.news') }}"><i class="fa fa-newspaper-o" aria-hidden="true"></i>News</a></li>
 					@endcan
 
-					@can('list-partner')
-					<li class="{{ Route::is('backend.partner*') ? 'active' : '' }}"><a href="{{ route('backend.partner') }}"><i class="fa fa-handshake-o" aria-hidden="true"></i>Partner</a></li>
+					@can('list-ecommerce')
+					<li class="{{ Route::is('backend.ecommerce*') ? 'active' : '' }}"><a href="{{ route('backend.ecommerce') }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Ecommerce</a></li>
+					@endcan
+
+					@can('list-advertisment')
+					<li class="{{ Route::is('backend.advertisment*') ? 'active' : '' }}"><a href="{{ route('backend.advertisment') }}"><i class="fa fa-commenting" aria-hidden="true"></i>Advertisment</a></li>
 					@endcan
 
 					@can('list-distribution')

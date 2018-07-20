@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Partner;
+use App\Models\Advertisment;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +16,8 @@ use Datatables;
 
 use App\Http\Controllers\Controller;
 
-class PartnerController extends Controller
+class AdvertismentController extends Controller
 {
-    
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,14 +25,14 @@ class PartnerController extends Controller
 
     public function index(Request $request)
 	{
-    	return view('backend.partner.index', compact('request'));
+    	return view('backend.advertisment.index', compact('request'));
 	}
 
     public function datatables(Request $request)
     {
         $f_publish   = $this->filter($request->f_publish);
 
-        $index = Partner::select('*');
+        $index = Advertisment::select('*');
 
         if($f_publish != '' && $f_publish == 1)
         {
@@ -51,32 +50,32 @@ class PartnerController extends Controller
         $datatables->addColumn('action', function ($index) {
             $html = '';
 
-            if(Auth::user()->can('edit-partner'))
+            if(Auth::user()->can('edit-advertisment'))
             {
                 $html .= '
-                    <a href="' . route('backend.partner.edit', ['id' => $index->id]) . '" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                    <a href="' . route('backend.advertisment.edit', ['id' => $index->id]) . '" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
                 ';
             }
 
-            if(Auth::user()->can('delete-partner'))
+            if(Auth::user()->can('delete-advertisment'))
             {
                 $html .= '
-                    <button class="btn btn-xs btn-danger delete-partner" data-toggle="modal" data-target="#delete-partner" data-id="'.$index->id.'"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-xs btn-danger delete-advertisment" data-toggle="modal" data-target="#delete-advertisment" data-id="'.$index->id.'"><i class="fa fa-trash"></i></button>
                 ';
             }
 
-            if (Auth::user()->can('publish-partner'))
+            if (Auth::user()->can('publish-advertisment'))
             {
                 if($index->flag_publish)
                 {
                     $html .= '
-                        <button class="btn btn-xs btn-dark unpublish-partner" data-toggle="modal" data-target="#unpublish-partner" data-id="'.$index->id.'">Unpublish</button>
+                        <button class="btn btn-xs btn-dark unpublish-advertisment" data-toggle="modal" data-target="#unpublish-advertisment" data-id="'.$index->id.'">Unpublish</button>
                     ';
                 }
                 else
                 {
                     $html .= '
-                        <button class="btn btn-xs btn-success publish-partner" data-toggle="modal" data-target="#publish-partner" data-id="'.$index->id.'">Publish</button>
+                        <button class="btn btn-xs btn-success publish-advertisment" data-toggle="modal" data-target="#publish-advertisment" data-id="'.$index->id.'">Publish</button>
                     ';
                 }
             }
@@ -85,11 +84,11 @@ class PartnerController extends Controller
         });
 
 
-        $datatables->editColumn('image_logo', function ($index) {
+        $datatables->editColumn('media', function ($index) {
             $html = '';
 
             $html .= '
-                <img src="'. asset($index->image_logo) .'" height="'.($index->image_height ?? 100).'">
+                <img src="'. asset($index->media) .'" height="30">
             ';
             
             return $html;
@@ -135,22 +134,23 @@ class PartnerController extends Controller
 
     public function create()
     {
-    	return view('backend.partner.create');
+    	return view('backend.advertisment.create');
     }
 
 	public function store(Request $request)
     {
         $message = [
-            'name.required'        => 'This Field Required.',
-            'image_height.numeric' => 'This Field Numeric only.',
-            'image_logo.required'  => 'This Field Required.',
-            'image_logo.image'     => 'Image file only.',
+            'name.required'   => 'This Field Required.',
+            'link.required'   => 'This Field Required.',
+            'media.required'  => 'This Field Required.',
+            'media.required'  => 'This Field Required.',
+            'media.image'     => 'Image file only.',
         ];
 
         $validator = Validator::make($request->all(), [
             'name'         => 'required',
-            'image_height' => 'numeric|nullable',
-            'image_logo'   => 'required|image',
+            'link'         => 'required',
+            'media'        => 'required|image',
         ], $message);
 
         if ($validator->fails()) {
@@ -160,47 +160,48 @@ class PartnerController extends Controller
         }
 
 
-    	$index = new Partner;
+    	$index = new Advertisment;
 
         $index->name         = $request->name;
-        $index->image_height = $request->image_height;
+        $index->type         = 'AUTO';
+        $index->link         = $request->link;
 
         $index->flag_publish = $request->flag_publish;
         $index->id_updated   = Auth::id();
         $index->version      = $request->version + 1;
 
 
-        if ($request->hasFile('image_logo'))
+        if ($request->hasFile('media'))
         {
-            $pathSource = 'upload/partner/';
-            $image      = $request->file('image_logo');
+            $pathSource = 'upload/advertisment/';
+            $image      = $request->file('media');
             $filename   = time() . '-' . $image->getClientOriginalName();
             if($image->move($pathSource, $filename))
             {
-                $index->image_logo = $pathSource . $filename;
+                $index->media = $pathSource . $filename;
             }
         }
 
         $index->save();
 
-    	return redirect()->route('backend.partner')->with('success', 'Data has been added');
+    	return redirect()->route('backend.advertisment')->with('success', 'Data has been added');
     }
 
     public function edit($id)
     {
-        $index = Partner::find($id);
+        $index = Advertisment::find($id);
 
         if($index == '')
         {
         	return redirect()->back()->with('failed', 'Data not exist');
         }
 
-    	return view('backend.partner.edit')->with(compact('index'));
+    	return view('backend.advertisment.edit')->with(compact('index'));
     }
 
     public function update($id, Request $request)
     {
-        $index = Partner::find($id);
+        $index = Advertisment::find($id);
 
         if($index == '')
         {
@@ -213,15 +214,15 @@ class PartnerController extends Controller
         }
 
     	$message = [
-            'name.required'        => 'This Field Required.',
-            'image_height.numeric' => 'This Field Numeric only.',
-            'image_logo.image'     => 'Image file only.',
+            'name.required'   => 'This Field Required.',
+            'link.required'   => 'This Field Required.',
+            'media.required'  => 'This Field Required.',
         ];
 
         $validator = Validator::make($request->all(), [
-            'name'         => 'required',
-            'image_height' => 'numeric|nullable',
-            'image_logo'   => 'image',
+            'name'  => 'required',
+            'link'  => 'required',
+            'media' => 'image',
         ], $message);
 
         if ($validator->fails()) {
@@ -231,37 +232,38 @@ class PartnerController extends Controller
         }
 
         $index->name         = $request->name;
-        $index->image_height = $request->image_height;
+        $index->type         = 'AUTO';
+        $index->link         = $request->link;
 
         $index->flag_publish = $request->flag_publish;
         $index->id_updated   = Auth::id();
         $index->version      = $request->version + 1;
 
-    	if ($request->hasFile('image_logo'))
+    	if ($request->hasFile('media'))
         {
-            $pathSource = 'upload/partner/';
-            $image      = $request->file('image_logo');
+            $pathSource = 'upload/advertisment/';
+            $image      = $request->file('media');
             $filename   = time() . '-' . $image->getClientOriginalName();
             if($image->move($pathSource, $filename))
             {
-                if($index->image_logo != null)
+                if($index->media != null)
                 {
-                    File::delete($index->image_logo);
+                    File::delete($index->media);
                 }
-                $index->image_logo = $pathSource . $filename;
+                $index->media = $pathSource . $filename;
             }
         }
 
         $index->save();
 
-    	return redirect()->route('backend.partner')->with('success', 'Data has been updated');
+    	return redirect()->route('backend.advertisment')->with('success', 'Data has been updated');
     }
 
     public function delete(Request $request)
     {
-    	if(Partner::find($request->id))
+    	if(Advertisment::find($request->id))
 		{
-			Partner::destroy($request->id);
+			Advertisment::destroy($request->id);
 
 	        return redirect()->back()->with('success', 'Data has been deleted');
 		}
@@ -275,17 +277,17 @@ class PartnerController extends Controller
     public function action(Request $request)
     {
         if ($request->action == 'delete' && Auth::user()->can('delete-inbox')) {
-            Partner::destroy($request->id);
+            Advertisment::destroy($request->id);
             return redirect()->back()->with('success', 'Data Has Been Deleted');
         }
         else if($request->action == 'publish')
     	{
-    		$index = Partner::whereIn('id', $request->id)->update(['flag_publish' => 1]);
+    		$index = Advertisment::whereIn('id', $request->id)->update(['flag_publish' => 1]);
             return redirect()->back()->with('success', 'Data has been set publish');
     	}
     	else if($request->action == 'unpublish')
     	{
-    		$index = Partner::whereIn('id', $request->id)->update(['flag_publish' => 0]);
+    		$index = Advertisment::whereIn('id', $request->id)->update(['flag_publish' => 0]);
             return redirect()->back()->with('success', 'Data has been set unpublish');
     	}
 
@@ -294,7 +296,7 @@ class PartnerController extends Controller
 
     public function publish(Request $request)
     {
-        $index = Partner::find($request->id);
+        $index = Advertisment::find($request->id);
 
         if ($index->flag_publish == 0)
         {

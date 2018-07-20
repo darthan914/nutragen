@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('title')
-	Partner
+	Ecommerce
 @endsection
 
 @section('script')
@@ -13,7 +13,7 @@
 			processing: true,
 			serverSide: true,
 			ajax: {
-				url: "{{ route('backend.partner.datatables') }}",
+				url: "{{ route('backend.ecommerce.datatables') }}",
 				type: "post",
 				data: {
 			    	f_publish : $('*[name=f_publish]').val(),
@@ -24,7 +24,7 @@
 				{data: 'flag_publish'},
 
 				{data: 'name'},
-				{data: 'image_logo'},
+				{data: 'link'},
 
 				{data: 'action', orderable: false, searchable: false, sClass: 'nowarp-cell'},
 			],
@@ -54,14 +54,14 @@
 		    }
 	    });
 
-	    $('#datatable').on('click', '.delete-partner', function(){
-			$('#delete-partner input[name=id]').val($(this).data('id'));
+	    $('#datatable').on('click', '.delete-ecommerce', function(){
+			$('#delete-ecommerce input[name=id]').val($(this).data('id'));
 		});
-		$('#datatable').on('click', '.publish-partner', function(){
-			$('#publish-partner input[name=id]').val($(this).data('id'));
+		$('#datatable').on('click', '.publish-ecommerce', function(){
+			$('#publish-ecommerce input[name=id]').val($(this).data('id'));
 		});
-		$('#datatable').on('click', '.unpublish-partner', function(){
-			$('#unpublish-partner input[name=id]').val($(this).data('id'));
+		$('#datatable').on('click', '.unpublish-ecommerce', function(){
+			$('#unpublish-ecommerce input[name=id]').val($(this).data('id'));
 		});
 	});
 </script>
@@ -79,17 +79,17 @@
 
 @section('content')
 
-	<h1>Partner</h1>
+	<h1>Ecommerce</h1>
 
-	@can('delete-partner')
-	{{-- Delete partner --}}
-	<div id="delete-partner" class="modal fade" partner="dialog">
+	@can('delete-ecommerce')
+	{{-- Delete ecommerce --}}
+	<div id="delete-ecommerce" class="modal fade" ecommerce="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="form-horizontal form-label-left" action="{{ route('backend.partner.delete') }}" method="post" enctype="multipart/form-data">
+				<form class="form-horizontal form-label-left" action="{{ route('backend.ecommerce.delete') }}" method="post" enctype="multipart/form-data">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Delete Partner?</h4>
+						<h4 class="modal-title">Delete Ecommerce?</h4>
 					</div>
 					<div class="modal-body">
 					</div>
@@ -105,12 +105,12 @@
 	</div>
 	@endcan
 
-	@can('publish-partner')
-	{{-- Read partner --}}
-	<div id="publish-partner" class="modal fade" partner="dialog">
+	@can('publish-ecommerce')
+	{{-- Read ecommerce --}}
+	<div id="publish-ecommerce" class="modal fade" ecommerce="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="form-horizontal form-label-left" action="{{ route('backend.partner.publish') }}" method="post" enctype="multipart/form-data">
+				<form class="form-horizontal form-label-left" action="{{ route('backend.ecommerce.publish') }}" method="post" enctype="multipart/form-data">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">Set Publish?</h4>
@@ -128,11 +128,11 @@
 		</div>
 	</div>
 
-	{{-- Unpublish partner --}}
-	<div id="unpublish-partner" class="modal fade" partner="dialog">
+	{{-- Unpublish ecommerce --}}
+	<div id="unpublish-ecommerce" class="modal fade" ecommerce="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="form-horizontal form-label-left" action="{{ route('backend.partner.publish') }}" method="post" enctype="multipart/form-data">
+				<form class="form-horizontal form-label-left" action="{{ route('backend.ecommerce.publish') }}" method="post" enctype="multipart/form-data">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">Set Unpublish?</h4>
@@ -165,9 +165,9 @@
 				</form>
 			</div>
 			<div class="col-md-6">
-				<form method="post" id="action" action="{{ route('backend.partner.action') }}" class="form-inline text-right">
-					@can('create-partner')
-					<a href="{{ route('backend.partner.create') }}" class="btn btn-default">Create</a>
+				<form method="post" id="action" action="{{ route('backend.ecommerce.action') }}" class="form-inline text-right">
+					@can('create-ecommerce')
+					<a href="{{ route('backend.ecommerce.create') }}" class="btn btn-default">Create</a>
 					@endcan
 					<select class="form-control" name="action">
 						<option value="publish">Set As Publish</option>
@@ -188,7 +188,7 @@
 					<th>Flag Publish</th>
 					<th>Name</th>
 
-					<th>Image</th>
+					<th>Source Link</th>
 
 					<th>Action</th>
 				</tr>

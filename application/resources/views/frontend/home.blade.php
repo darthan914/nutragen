@@ -1,7 +1,7 @@
 @extends('frontend._layout.master')
 
 @section('title')
-    Nutragen - Home
+    Home
 @endsection
 
 @section('style')
@@ -28,9 +28,19 @@
 
         @media(max-width: 991px)
         {
-            .wheat > div
+            .wheat
             {
-                bottom: -280px;
+                display: none;
+            }
+
+            .mobile-version-white
+            {
+                background-color: white !important;
+            }
+
+            .mobile-version-white .white-color
+            {
+                color: black !important;
             }
         }
 
@@ -66,10 +76,28 @@
             padding-top: 70px;
         }
 
-        .principles .path-dots{
+        .principles .circle-content{
             margin-top: 40px;
             margin-bottom: 40px;
             text-align: center;
+            position: relative;
+        }
+
+        .principles .circle-content div.path-dots
+        {
+            position: absolute;
+            width: 80%;
+            overflow: hidden;
+        }
+
+        .principles .circle-content div.path-block
+        {
+            background-color: #f7b733;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
         }
 
         .circle .name
@@ -77,7 +105,7 @@
             height: 30px;
         }
 
-        .principles .path-dots img.circle{
+        .principles .circle-content img.circle{
             height: 60px;
             margin: auto;
             -webkit-filter: drop-shadow(8px 8px 10px black);
@@ -102,14 +130,7 @@
 
         @media (min-width: 992px)
         {
-            .principles .path-dots{
-                background-image: url(frontend/images/fresh-dots.png);
-                background-repeat: no-repeat, repeat;
-                background-size: 80%;
-                background-position: 50% 2%;
-            }
-
-            .principles .path-dots div.circle
+            .principles .circle-content div.circle
             {
                 /*text-align: center;*/
 
@@ -130,6 +151,7 @@
             div.circle .text-box
             {
                 height: 250px;
+                margin-top: 60px;
             }
 
             div.circle .text-box > *
@@ -143,27 +165,27 @@
                 font-weight: 800;
             }
 
-            .principles .path-dots img.circle.f{
+            .principles .circle-content img.circle.f{
                 position: relative;
                 top: 24px;
             }
 
-            .principles .path-dots img.circle.r{
+            .principles .circle-content img.circle.r{
                 position: relative;
                 top: 11px;
             }
 
-            .principles .path-dots img.circle.e{
+            .principles .circle-content img.circle.e{
                 position: relative;
                 top: 36px;
             }
 
-            .principles .path-dots img.circle.s{
+            .principles .circle-content img.circle.s{
                 position: relative;
                 top: 6px;
             }
 
-            .principles .path-dots img.circle.h{
+            .principles .circle-content img.circle.h{
                 position: relative;
                 top: 19px;
             }
@@ -193,22 +215,50 @@
                 max-width: 65%;
                 margin: 20px 17px !important;
             }
+
+            .circle .name
+            {
+                display: none !important;
+            }
+
+            .path-dots, .path-block
+            {
+                display: none;
+            }
         }
 
+        .path-block {
+            animation-delay: 0.75s;
+            -webkit-animation-delay: 0.75s;
+            animation-duration: 2.5s;
+            -webkit-animation-duration: 2.5s;
+            animation-timing-function: linear;
+            -webkit-animation-timing-function: linear;
+        }
         .aniview-f {
+            animation-delay: 0.5s;
             -webkit-animation-delay: 0.5s;
         }
         .aniview-r {
+            animation-delay: 1s;
             -webkit-animation-delay: 1s;
         }
         .aniview-e {
+            animation-delay: 1.5s;
             -webkit-animation-delay: 1.5s;
         }
         .aniview-s {
+            animation-delay: 2s;
             -webkit-animation-delay: 2s;
         }
         .aniview-h {
+            animation-delay: 2.5s;
             -webkit-animation-delay: 2.5s;
+        }
+
+        .event-f, .event-r, .event-e, .event-s, .event-h
+        {
+            cursor: pointer;
         }
 
         /*end Principles*/
@@ -274,6 +324,13 @@
         {
             width: 100px;
         }
+
+        @media(max-width: 991px)
+        {
+            .product .logo .name {
+                height: auto !important;
+            }
+        }
         /*end Product*/
 
         /*Partner*/
@@ -296,15 +353,44 @@
 @section('script')
     <script type="text/javascript">
         $(function() {
-            $('.aniview-f, .aniview-r, .aniview-e, .aniview-s, .aniview-h').AniView();
+            $(".event-f").click(function(){
+                $(".less-f").slideToggle("slow");
+                $(".more-f").slideToggle("slow");
+            });
+
+            $(".event-r").click(function(){
+                $(".less-r").slideToggle("slow");
+                $(".more-r").slideToggle("slow");
+            });
+            $(".event-e").click(function(){
+                $(".less-e").slideToggle("slow");
+                $(".more-e").slideToggle("slow");
+            });
+
+            $(".event-s").click(function(){
+                $(".less-s").slideToggle("slow");
+                $(".more-s").slideToggle("slow");
+            });
+
+            $(".event-h").click(function(){
+                $(".less-h").slideToggle("slow");
+                $(".more-h").slideToggle("slow");
+            });
         });
     </script>
+@endsection
+
+@section('meta')
+<meta name="og:title" content="{{ $home_meta_name->value }}"/>
+<meta name="og:url" content="{{ $home_meta_url->value }}"/>
+<meta name="og:image" content="{{ asset($home_meta_image->value) }}"/>
+<meta name="og:description" content="{{ $home_meta_description->value }}"/>
 @endsection
 
 @section('content')
     <div class="content">
         
-        <div class="container">
+        <div class="container ">
             <div class="row mini-spacing">
                 <div class="col-lg-6">
                     <div class="aniview" data-av-animation="fadeInLeft">
@@ -322,14 +408,14 @@
                     
                 </div>
             </div>
-            <div class="row mini-spacing justify-content-end">
+            <div class="row mini-spacing justify-content-end mobile-version-white">
                 <div class="col-lg-6 text-right">
                     <div class="aniview" data-av-animation="fadeInRight">
                         <img src="{{ asset('frontend/images/delivering-the-good-life.png') }}" class="img-large">
                     </div>
                 </div>
             </div>
-            <div class="row mini-spacing">
+            <div class="row mini-spacing mobile-version-white">
                 <div class="col-lg-6">
                     <div class="aniview" data-av-animation="fadeInLeft">
                         <h2 class="red-color">
@@ -356,96 +442,105 @@
 
         <div class="principles container white-color">
             <div class="aniview" data-av-animation="fadeInRight">
-                <h2 class="text-right">Our business</h2>
-                <p class="text-right mini-spacing">runs with these unshakeable, unnegotiable set of values</p>
+                <h2 class="text-right">Vision & Mission</h2>
+                <p class="text-right mini-spacing">Our Business runs with these unshakeable, unnegotiable set of values</p>
             </div>
 
             <div class="aniview" data-av-animation="fadeInUp">
-                <div class="row justify-content-center path-dots">
+                <div class="row justify-content-center circle-content">
+                    <div class="path-dots">
+                        <img src="{{ asset('frontend/images/fresh-dots.png') }}" style="width:100%" class="aniview" data-av-animation="default">
+                        <div style="" class="aniview path-block" data-av-animation="slideOutRight"></div>
+                    </div>
                     <div class="circle">
-                        <div class="logo">
-                            <div class="aniview-f" data-av-animation="bounceIn">
+                        <div class="logo event-f">
+                            <div class="aniview aniview-f" data-av-animation="bounceIn">
                                 <span class="helper"></span>
                                 <img src="{{ asset('frontend/images/f-circle.png') }}" class="circle f">
                             </div>
                             
                         </div>
                         
-                        <div class="name d-none d-sm-none d-lg-block">
-                            <div class="aniview-f" data-av-animation="bounceInDown">
-                                <p class="white-color">Fast</p>
-                            </div>
+                        <div class="name event-fresh less-f" style="display: block;">
+                            <p class="white-color">Fast</p>
                         </div>
                         
-                        
+                        <div class="text-box event-fresh more-f" style="display: none;">
+                            <h3 style="color: #f37047">Fast</h3>
+                            <p>The world is moving quickly and your time is precious. We are committed to serve our customer as efficient as possible.</p>
+                        </div>
                     </div>
 
-                    <div class="circle">
+                    <div class="circle event-r">
                         <div class="logo">
-                            <div class="aniview-r" data-av-animation="bounceIn">
+                            <div class="aniview aniview-r" data-av-animation="bounceIn">
                                 <span class="helper"></span>
                                 <img src="{{ asset('frontend/images/r-circle.png') }}" class="circle r">
                             </div>
                         </div>
                         
-                        <div class="name d-none d-sm-none d-lg-block">
-                            <div class="aniview-r" data-av-animation="bounceInDown">
-                                <p class="white-color">Reliable</p>
-                            </div>
+                        <div class="name event-fresh less-r" style="display: block;">
+                            <p class="white-color">Reliable</p>
                         </div>
                         
-                        
+                        <div class="text-box event-fresh more-r" style="display: none;">
+                            <h3 style="color: #57b0e3">Reliable</h3>
+                            <p>The world is moving quickly and your time is precious. We are committed to serve our customer as efficient as possible.</p>
+                        </div>
                     </div>
 
-                    <div class="circle">
+                    <div class="circle event-e">
                         <div class="logo">
-                            <div class="aniview-e" data-av-animation="bounceIn">
+                            <div class="aniview aniview-e" data-av-animation="bounceIn">
                                 <span class="helper"></span>
                                 <img src="{{ asset('frontend/images/e-circle.png') }}" class="circle e">
                             </div>
                         </div>
                         
-                        <div class="name d-none d-sm-none d-lg-block">
-                            <div class="aniview-e" data-av-animation="bounceInDown">
-                                <p class="white-color">Excellent</p>
-                            </div>
+                        <div class="name event-fresh less-e" style="display: block;">
+                            <p class="white-color">Excellent</p>
                         </div>
                         
-                        
+                        <div class="text-box event-fresh more-e" style="display: none;">
+                            <h3 style="color: #ee335d">Excellent</h3>
+                            <p>The world is moving quickly and your time is precious. We are committed to serve our customer as efficient as possible.</p>
+                        </div>
                     </div>
 
-                    <div class="circle">
+                    <div class="circle event-s">
                         <div class="logo">
-                            <div class="aniview-s" data-av-animation="bounceIn">
+                            <div class="aniview aniview-s" data-av-animation="bounceIn">
                                 <span class="helper"></span>
                                 <img src="{{ asset('frontend/images/s-circle.png') }}" class="circle s">
                             </div>
                         </div>
                         
-                        <div class="name d-none d-sm-none d-lg-block">
-                            <div class="aniview-s" data-av-animation="bounceInDown">
-                                <p class="white-color">Service</p>
-                            </div>
+                        <div class="name event-fresh less-s" style="display: block;">
+                            <p class="white-color">Service</p>
                         </div>
                         
-                        
+                        <div class="text-box event-fresh more-s" style="display: none;">
+                            <h3 style="color: #b0d237">Service</h3>
+                            <p>The world is moving quickly and your time is precious. We are committed to serve our customer as efficient as possible.</p>
+                        </div>
                     </div>
 
-                    <div class="circle">
+                    <div class="circle event-h">
                         <div class="logo">
-                            <div class="aniview-h" data-av-animation="bounceIn">
+                            <div class="aniview aniview-h" data-av-animation="bounceIn">
                                 <span class="helper"></span>
                                 <img src="{{ asset('frontend/images/h-circle.png') }}" class="circle h">
                             </div>
                         </div>
                         
-                        <div class="name d-none d-sm-none d-lg-block">
-                            <div class="aniview-h" data-av-animation="bounceInDown">
-                                <p class="white-color">High Committed</p>
-                            </div>
+                        <div class="name event-fresh less-h" style="display: block;">
+                            <p class="white-color">High Committed</p>
                         </div>
                         
-                        
+                        <div class="text-box event-fresh more-h" style="display: none;">
+                            <h3 style="color: #f7a71b">High Committed</h3>
+                            <p>The world is moving quickly and your time is precious. We are committed to serve our customer as efficient as possible.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -499,7 +594,7 @@
                 <p class="text-center">
                     @foreach($license as $list)
                     
-                        <img src="{{ asset($list->image_logo) }}" class="img-medium" style="{{ $list->image_height ? 'height: '.$list->image_height.';' : '' }}">
+                        <img src="{{ asset($list->image_logo) }}" class="img-medium img-certification" style="{{ $list->image_height ? 'height: '.$list->image_height.';' : '' }}">
                     
                     @endforeach
                 </p>
@@ -515,43 +610,84 @@
                     <div class="aniview" data-av-animation="flipInY">
                         <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
                         <h3>Sales Team (Independents)</h3>
-                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                        <p>
+                            We have a highly skilled sales team who have
+                            substantial expertise and specialist knowledge. We
+                            cover the whole of the Indonesia across all trade
+                            channels from small independents, wholesale, cash &
+                            carry, convenience and food service, and thrive on
+                            building strong relationships with all our customers.
+                        </p>
                     </div>
                     
                 </div>
                 <div class="col-md-4 mini-spacing">
                     <div class="aniview" data-av-animation="flipInY">
-                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                        <h3>Sales Team (Independents)</h3>
-                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                        <img src="{{ asset('frontend/images/group.png') }}" class="symbol">
+                        <h3>Sales Team (Multiples)</h3>
+                        <p>
+                            We have a dedicated sales team focused solely within
+                            the multiple retail sales channel, we pride ourselves in
+                            creating strong long term relationships across
+                            numerous categories within each retailer.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
                     <div class="aniview" data-av-animation="flipInY">
-                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                        <h3>Sales Team (Independents)</h3>
-                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                        <img src="{{ asset('frontend/images/business-affiliate-network.png') }}" class="symbol">
+                        <h3>Marketing & Brand Management</h3>
+                        <p>
+                            Targeted marketing makes all the diﬀerence in
+                            achieving standout in today’s ever increasing competitive retail
+                            environments. We have a dedicated brand manager
+                            working on each brand, and our expertise and skill
+                            across the whole of the marketing mix to ensure
+                            success in today’s competitive environment.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
                     <div class="aniview" data-av-animation="flipInY">
-                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                        <h3>Sales Team (Independents)</h3>
-                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                        <img src="{{ asset('frontend/images/truck.png') }}" class="symbol">
+                        <h3>Purchasing & Logistics</h3>
+                        <p>
+                            In the purchasing and logistics team, we work closely
+                            with suppliers and various transport companies. We
+                            always look for the best solutions to import and deliver
+                            products to you at the best prices and with the best
+                            possible lead times, whether you are local or overseas.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
                     <div class="aniview" data-av-animation="flipInY">
-                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                        <h3>Sales Team (Independents)</h3>
-                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                        <img src="{{ asset('frontend/images/icon.png') }}" class="symbol">
+                        <h3>Technical</h3>
+                        <p>
+                            Our technical strength has been established through
+                            a long tradition of industry excellence. Led by our
+                            highly qualiﬁed in-house technical team, we are
+                            available to share our knowledge in the areas of
+                            product development, quality assurance, product
+                            sampling and grading. We have also developed long-standing
+                            relationships with FSSC 22000 approved suppliers.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 mini-spacing">
                     <div class="aniview" data-av-animation="flipInY">
-                        <img src="{{ asset('frontend/images/clerk.png') }}" class="symbol">
-                        <h3>Sales Team (Independents)</h3>
-                        <p>We have a highly skilled sales team who have substantial expertise and specialist knowledge. We cover the whole of the Indonesia across all trade channels.</p>
+                        <img src="{{ asset('frontend/images/warehouse.png') }}" class="symbol">
+                        <h3>Warehouse</h3>
+                        <p>
+                            Our warehouse has 12,000 sq ft of space and is ISO
+                            Certiﬁed. Our location is perfect for distribution
+                            throughout the Indonesia. Our customers beneﬁt from
+                            the environmental and cost eﬃciencies we generate
+                            through the supply chain, from warehousing and
+                            receipt of orders, to consolidated deliveries and
+                            invoicing.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -573,7 +709,7 @@
                             <div class="aniview" data-av-animation="fadeInDown">
                                 <div class="name">
                                     <span class="helper"></span>
-                                    <img src="{{ asset($list->image_logo) }}" class="img-medium" style="{{ ($list->image_logo_height ? 'height: '.$list->image_logo_height.'px;' : '') }}">
+                                    <img src="{{ asset($list->image_logo) }}" class="img-medium img-product" style="{{ ($list->image_logo_height ? 'height: '.$list->image_logo_height.'px;' : '') }}">
                                 </div>
                             </div>
                             <br/>
@@ -600,8 +736,8 @@
             <div class="container">
                 <div class="aniview" data-av-animation="fadeIn">
                     <p class="text-center">
-                        @foreach($partner as $list)
-                        <img src="{{ asset($list->image_logo) }}" class="img-medium" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
+                        @foreach($ecommerce as $list)
+                        <img src="{{ asset($list->image_logo) }}" class="img-medium img-ecommerce" style="{{ $list->image_height ? 'height: '.$list->image_height.'px;' : '' }}">
                         @endforeach
                     </p>
                 </div>

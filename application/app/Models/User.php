@@ -159,6 +159,19 @@ class User extends Authenticatable
                 ]
             ],
 
+            // accessPage
+            [
+                'name' => 'Page Management',
+                'id' => 'page',
+                'data' => 
+                [
+                    [
+                        'name' => 'Edit',
+                        'value' => 'edit-page'
+                    ],
+                ]
+            ],
+
             // accessInbox
             [
                 'name' => 'Inbox',
@@ -213,31 +226,31 @@ class User extends Authenticatable
                 ]
             ],
 
-            // accessPartner
+            // accessEcommerce
             [
-                'name' => 'Partner',
-                'id' => 'partner',
+                'name' => 'Ecommerce',
+                'id' => 'ecommerce',
                 'data' => 
                 [
                     [
                         'name' => 'List',
-                        'value' => 'list-partner'
+                        'value' => 'list-ecommerce'
                     ],
                     [
                         'name' => 'Create',
-                        'value' => 'create-partner'
+                        'value' => 'create-ecommerce'
                     ],
                     [
                         'name' => 'Edit',
-                        'value' => 'edit-partner'
+                        'value' => 'edit-ecommerce'
                     ],
                     [
                         'name' => 'Delete',
-                        'value' => 'delete-partner'
+                        'value' => 'delete-ecommerce'
                     ],
                     [
                         'name' => 'Publish',
-                        'value' => 'publish-partner'
+                        'value' => 'publish-ecommerce'
                     ],
                 ]
             ],
@@ -325,6 +338,35 @@ class User extends Authenticatable
                     [
                         'name' => 'Publish',
                         'value' => 'publish-product'
+                    ],
+                ]
+            ],
+
+            // accessAdvertisment
+            [
+                'name' => 'Advertisment',
+                'id' => 'advertisment',
+                'data' => 
+                [
+                    [
+                        'name' => 'List',
+                        'value' => 'list-advertisment'
+                    ],
+                    [
+                        'name' => 'Create',
+                        'value' => 'create-advertisment'
+                    ],
+                    [
+                        'name' => 'Edit',
+                        'value' => 'edit-advertisment'
+                    ],
+                    [
+                        'name' => 'Delete',
+                        'value' => 'delete-advertisment'
+                    ],
+                    [
+                        'name' => 'Publish',
+                        'value' => 'publish-advertisment'
                     ],
                 ]
             ],

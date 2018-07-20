@@ -1,7 +1,7 @@
 @extends('frontend._layout.master')
 
 @section('title')
-    Nutragen - News
+    {{ $news->title }}
 @endsection
 
 @section('style')
@@ -57,6 +57,13 @@
 
 @section('script')
 
+@endsection
+
+@section('meta')
+<meta name="og:title" content="{{ $news->meta_title }}"/>
+<meta name="og:url" content="{{ $news->meta_url }}"/>
+<meta name="og:image" content="{{ asset($news->meta_image) }}"/>
+<meta name="og:description" content="{{ $news->meta_description }}"/>
 @endsection
 
 @section('content')

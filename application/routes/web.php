@@ -67,6 +67,11 @@ Route::prefix('admin')->group(function () {
 	Route::get('/config', 'Backend\ConfigController@index')->name('backend.config')->middleware('can:config');
 	Route::post('/config/update', 'Backend\ConfigController@update')->name('backend.config.update')->middleware('can:config');
 
+	// Config
+	Route::get('/page', 'Backend\PageController@index')->name('backend.page')->middleware('can:edit-page');
+	Route::post('/page/update', 'Backend\PageController@update')->name('backend.page.update')->middleware('can:edit-page');
+	Route::post('/page/get', 'Backend\PageController@get')->name('backend.page.get')->middleware('can:edit-page');
+
 	// Admin Inbox
 	Route::get('/inbox', 'Backend\InboxController@index')->name('backend.inbox')->middleware('can:list-inbox');
 	Route::get('/inbox/index', 'Backend\InboxController@index')->name('backend.inbox.index')->middleware('can:list-inbox');
@@ -91,18 +96,18 @@ Route::prefix('admin')->group(function () {
 	Route::post('/news/action', 'Backend\NewsController@action')->name('backend.news.action');
 	Route::post('/news/publish', 'Backend\NewsController@publish')->name('backend.news.publish')->middleware('can:publish-news');
 
-	// Admin Partner
-	Route::get('/partner', 'Backend\PartnerController@index')->name('backend.partner')->middleware('can:list-partner');
-	Route::get('/partner/index', 'Backend\PartnerController@index')->name('backend.partner.index')->middleware('can:list-partner');
-	Route::post('/partner/datatables', 'Backend\PartnerController@datatables')->name('backend.partner.datatables')->middleware('can:list-partner');
+	// Admin Ecommerce
+	Route::get('/ecommerce', 'Backend\EcommerceController@index')->name('backend.ecommerce')->middleware('can:list-ecommerce');
+	Route::get('/ecommerce/index', 'Backend\EcommerceController@index')->name('backend.ecommerce.index')->middleware('can:list-ecommerce');
+	Route::post('/ecommerce/datatables', 'Backend\EcommerceController@datatables')->name('backend.ecommerce.datatables')->middleware('can:list-ecommerce');
 
-	Route::get('/partner/create', 'Backend\PartnerController@create')->name('backend.partner.create')->middleware('can:create-partner');
-	Route::post('/partner/store', 'Backend\PartnerController@store')->name('backend.partner.store')->middleware('can:create-partner');
-	Route::get('/partner/{id}/edit', 'Backend\PartnerController@edit')->name('backend.partner.edit')->middleware('can:edit-partner');
-	Route::post('/partner/{id}/update', 'Backend\PartnerController@update')->name('backend.partner.update')->middleware('can:edit-partner');
-	Route::post('/partner/delete', 'Backend\PartnerController@delete')->name('backend.partner.delete')->middleware('can:delete-partner');
-	Route::post('/partner/action', 'Backend\PartnerController@action')->name('backend.partner.action');
-	Route::post('/partner/publish', 'Backend\PartnerController@publish')->name('backend.partner.publish')->middleware('can:publish-partner');
+	Route::get('/ecommerce/create', 'Backend\EcommerceController@create')->name('backend.ecommerce.create')->middleware('can:create-ecommerce');
+	Route::post('/ecommerce/store', 'Backend\EcommerceController@store')->name('backend.ecommerce.store')->middleware('can:create-ecommerce');
+	Route::get('/ecommerce/{id}/edit', 'Backend\EcommerceController@edit')->name('backend.ecommerce.edit')->middleware('can:edit-ecommerce');
+	Route::post('/ecommerce/{id}/update', 'Backend\EcommerceController@update')->name('backend.ecommerce.update')->middleware('can:edit-ecommerce');
+	Route::post('/ecommerce/delete', 'Backend\EcommerceController@delete')->name('backend.ecommerce.delete')->middleware('can:delete-ecommerce');
+	Route::post('/ecommerce/action', 'Backend\EcommerceController@action')->name('backend.ecommerce.action');
+	Route::post('/ecommerce/publish', 'Backend\EcommerceController@publish')->name('backend.ecommerce.publish')->middleware('can:publish-ecommerce');
 
 	// Admin Distribution
 	Route::get('/distribution', 'Backend\DistributionController@index')->name('backend.distribution')->middleware('can:list-distribution');
@@ -143,5 +148,18 @@ Route::prefix('admin')->group(function () {
 	Route::post('/product/delete', 'Backend\ProductController@delete')->name('backend.product.delete')->middleware('can:delete-product');
 	Route::post('/product/action', 'Backend\ProductController@action')->name('backend.product.action');
 	Route::post('/product/publish', 'Backend\ProductController@publish')->name('backend.product.publish')->middleware('can:publish-product');
+
+	// Admin Advertisment
+	Route::get('/advertisment', 'Backend\AdvertismentController@index')->name('backend.advertisment')->middleware('can:list-advertisment');
+	Route::get('/advertisment/index', 'Backend\AdvertismentController@index')->name('backend.advertisment.index')->middleware('can:list-advertisment');
+	Route::post('/advertisment/datatables', 'Backend\AdvertismentController@datatables')->name('backend.advertisment.datatables')->middleware('can:list-advertisment');
+
+	Route::get('/advertisment/create', 'Backend\AdvertismentController@create')->name('backend.advertisment.create')->middleware('can:create-advertisment');
+	Route::post('/advertisment/store', 'Backend\AdvertismentController@store')->name('backend.advertisment.store')->middleware('can:create-advertisment');
+	Route::get('/advertisment/{id}/edit', 'Backend\AdvertismentController@edit')->name('backend.advertisment.edit')->middleware('can:edit-advertisment');
+	Route::post('/advertisment/{id}/update', 'Backend\AdvertismentController@update')->name('backend.advertisment.update')->middleware('can:edit-advertisment');
+	Route::post('/advertisment/delete', 'Backend\AdvertismentController@delete')->name('backend.advertisment.delete')->middleware('can:delete-advertisment');
+	Route::post('/advertisment/action', 'Backend\AdvertismentController@action')->name('backend.advertisment.action');
+	Route::post('/advertisment/publish', 'Backend\AdvertismentController@publish')->name('backend.advertisment.publish')->middleware('can:publish-advertisment');
 });
 

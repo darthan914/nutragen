@@ -182,6 +182,8 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
 
+        // OwenIt\Auditing\AuditingServiceProvider::class,
+
     ],
 
     /*

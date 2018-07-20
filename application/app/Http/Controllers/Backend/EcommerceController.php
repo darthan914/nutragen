@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Distribution;
+use App\Models\Ecommerce;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +16,9 @@ use Datatables;
 
 use App\Http\Controllers\Controller;
 
-class DistributionController extends Controller
+class EcommerceController extends Controller
 {
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,14 +26,14 @@ class DistributionController extends Controller
 
     public function index(Request $request)
 	{
-    	return view('backend.distribution.index', compact('request'));
+    	return view('backend.ecommerce.index', compact('request'));
 	}
 
     public function datatables(Request $request)
     {
         $f_publish   = $this->filter($request->f_publish);
 
-        $index = Distribution::select('*');
+        $index = Ecommerce::select('*');
 
         if($f_publish != '' && $f_publish == 1)
         {
@@ -50,32 +51,32 @@ class DistributionController extends Controller
         $datatables->addColumn('action', function ($index) {
             $html = '';
 
-            if(Auth::user()->can('edit-distribution'))
+            if(Auth::user()->can('edit-ecommerce'))
             {
                 $html .= '
-                    <a href="' . route('backend.distribution.edit', ['id' => $index->id]) . '" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                    <a href="' . route('backend.ecommerce.edit', ['id' => $index->id]) . '" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
                 ';
             }
 
-            if(Auth::user()->can('delete-distribution'))
+            if(Auth::user()->can('delete-ecommerce'))
             {
                 $html .= '
-                    <button class="btn btn-xs btn-danger delete-distribution" data-toggle="modal" data-target="#delete-distribution" data-id="'.$index->id.'"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-xs btn-danger delete-ecommerce" data-toggle="modal" data-target="#delete-ecommerce" data-id="'.$index->id.'"><i class="fa fa-trash"></i></button>
                 ';
             }
 
-            if (Auth::user()->can('publish-distribution'))
+            if (Auth::user()->can('publish-ecommerce'))
             {
                 if($index->flag_publish)
                 {
                     $html .= '
-                        <button class="btn btn-xs btn-dark unpublish-distribution" data-toggle="modal" data-target="#unpublish-distribution" data-id="'.$index->id.'">Unpublish</button>
+                        <button class="btn btn-xs btn-dark unpublish-ecommerce" data-toggle="modal" data-target="#unpublish-ecommerce" data-id="'.$index->id.'">Unpublish</button>
                     ';
                 }
                 else
                 {
                     $html .= '
-                        <button class="btn btn-xs btn-success publish-distribution" data-toggle="modal" data-target="#publish-distribution" data-id="'.$index->id.'">Publish</button>
+                        <button class="btn btn-xs btn-success publish-ecommerce" data-toggle="modal" data-target="#publish-ecommerce" data-id="'.$index->id.'">Publish</button>
                     ';
                 }
             }
@@ -88,7 +89,7 @@ class DistributionController extends Controller
             $html = '';
 
             $html .= '
-                <img src="'. asset($index->image_logo) .'" height="'.($index->image_height ?? 30).'">
+                <img src="'. asset($index->image_logo) .'" height="'.($index->image_height ?? 100).'">
             ';
             
             return $html;
@@ -134,13 +135,14 @@ class DistributionController extends Controller
 
     public function create()
     {
-    	return view('backend.distribution.create');
+    	return view('backend.ecommerce.create');
     }
 
 	public function store(Request $request)
     {
         $message = [
             'name.required'        => 'This Field Required.',
+            'link.required'        => 'This Field Required.',
             'image_height.numeric' => 'This Field Numeric only.',
             'image_logo.required'  => 'This Field Required.',
             'image_logo.image'     => 'Image file only.',
@@ -148,6 +150,7 @@ class DistributionController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name'         => 'required',
+            'link'         => 'required',
             'image_height' => 'numeric|nullable',
             'image_logo'   => 'required|image',
         ], $message);
@@ -159,9 +162,10 @@ class DistributionController extends Controller
         }
 
 
-    	$index = new Distribution;
+    	$index = new Ecommerce;
 
         $index->name         = $request->name;
+        $index->link         = $request->link;
         $index->image_height = $request->image_height;
 
         $index->flag_publish = $request->flag_publish;
@@ -171,7 +175,7 @@ class DistributionController extends Controller
 
         if ($request->hasFile('image_logo'))
         {
-            $pathSource = 'upload/distribution/';
+            $pathSource = 'upload/ecommerce/';
             $image      = $request->file('image_logo');
             $filename   = time() . '-' . $image->getClientOriginalName();
             if($image->move($pathSource, $filename))
@@ -182,24 +186,24 @@ class DistributionController extends Controller
 
         $index->save();
 
-    	return redirect()->route('backend.distribution')->with('success', 'Data has been added');
+    	return redirect()->route('backend.ecommerce')->with('success', 'Data has been added');
     }
 
     public function edit($id)
     {
-        $index = Distribution::find($id);
+        $index = Ecommerce::find($id);
 
         if($index == '')
         {
         	return redirect()->back()->with('failed', 'Data not exist');
         }
 
-    	return view('backend.distribution.edit')->with(compact('index'));
+    	return view('backend.ecommerce.edit')->with(compact('index'));
     }
 
     public function update($id, Request $request)
     {
-        $index = Distribution::find($id);
+        $index = Ecommerce::find($id);
 
         if($index == '')
         {
@@ -213,14 +217,17 @@ class DistributionController extends Controller
 
     	$message = [
             'name.required'        => 'This Field Required.',
+            'link.required'        => 'This Field Required.',
             'image_height.numeric' => 'This Field Numeric only.',
+            'image_logo.required'  => 'This Field Required.',
             'image_logo.image'     => 'Image file only.',
         ];
 
         $validator = Validator::make($request->all(), [
             'name'         => 'required',
+            'link'         => 'required',
             'image_height' => 'numeric|nullable',
-            'image_logo'   => 'image',
+            'image_logo'   => 'required|image',
         ], $message);
 
         if ($validator->fails()) {
@@ -230,6 +237,7 @@ class DistributionController extends Controller
         }
 
         $index->name         = $request->name;
+        $index->link         = $request->link;
         $index->image_height = $request->image_height;
 
         $index->flag_publish = $request->flag_publish;
@@ -238,7 +246,7 @@ class DistributionController extends Controller
 
     	if ($request->hasFile('image_logo'))
         {
-            $pathSource = 'upload/distribution/';
+            $pathSource = 'upload/ecommerce/';
             $image      = $request->file('image_logo');
             $filename   = time() . '-' . $image->getClientOriginalName();
             if($image->move($pathSource, $filename))
@@ -253,14 +261,14 @@ class DistributionController extends Controller
 
         $index->save();
 
-    	return redirect()->route('backend.distribution')->with('success', 'Data has been updated');
+    	return redirect()->route('backend.ecommerce')->with('success', 'Data has been updated');
     }
 
     public function delete(Request $request)
     {
-    	if(Distribution::find($request->id))
+    	if(Ecommerce::find($request->id))
 		{
-			Distribution::destroy($request->id);
+			Ecommerce::destroy($request->id);
 
 	        return redirect()->back()->with('success', 'Data has been deleted');
 		}
@@ -274,17 +282,17 @@ class DistributionController extends Controller
     public function action(Request $request)
     {
         if ($request->action == 'delete' && Auth::user()->can('delete-inbox')) {
-            Distribution::destroy($request->id);
+            Ecommerce::destroy($request->id);
             return redirect()->back()->with('success', 'Data Has Been Deleted');
         }
         else if($request->action == 'publish')
     	{
-    		$index = Distribution::whereIn('id', $request->id)->update(['flag_publish' => 1]);
+    		$index = Ecommerce::whereIn('id', $request->id)->update(['flag_publish' => 1]);
             return redirect()->back()->with('success', 'Data has been set publish');
     	}
     	else if($request->action == 'unpublish')
     	{
-    		$index = Distribution::whereIn('id', $request->id)->update(['flag_publish' => 0]);
+    		$index = Ecommerce::whereIn('id', $request->id)->update(['flag_publish' => 0]);
             return redirect()->back()->with('success', 'Data has been set unpublish');
     	}
 
@@ -293,7 +301,7 @@ class DistributionController extends Controller
 
     public function publish(Request $request)
     {
-        $index = Distribution::find($request->id);
+        $index = Ecommerce::find($request->id);
 
         if ($index->flag_publish == 0)
         {

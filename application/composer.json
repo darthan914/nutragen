@@ -15,7 +15,9 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
+        "laravelista/lumen-vendor-publish": "^2.1",
         "maatwebsite/excel": "~2.1.8",
+        "owen-it/laravel-auditing": "^6.1",
         "phpoffice/phpspreadsheet": "^1.2",
         "spatie/laravel-analytics": "^3.0",
         "yajra/laravel-datatables-oracle": "6.*"

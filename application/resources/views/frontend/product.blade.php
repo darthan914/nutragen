@@ -1,7 +1,7 @@
 @extends('frontend._layout.master')
 
 @section('title')
-    Nutragen - Products
+    Products
 @endsection
 
 @section('style')
@@ -32,6 +32,13 @@
         .product .logo .shadow
         {
             width: 100px;
+        }
+
+        @media(max-width: 991px)
+        {
+            .product .logo .name {
+                height: auto !important;
+            }
         }
         /*end Product*/
 
@@ -64,6 +71,13 @@
 
 @endsection
 
+@section('meta')
+<meta name="og:title" content="{{ $product_meta_name->value }}"/>
+<meta name="og:url" content="{{ $product_meta_url->value }}"/>
+<meta name="og:image" content="{{ asset($product_meta_image->value) }}"/>
+<meta name="og:description" content="{{ $product_meta_description->value }}"/>
+@endsection
+
 @section('content')
     <div class="content">
         <div class="product bootstrap mini-spacing">
@@ -78,7 +92,7 @@
                             <div class="aniview" data-av-animation="fadeInDown">
                                 <div class="name">
                                     <span class="helper"></span>
-                                    <img src="{{ asset($list->image_logo) }}" class="img-medium" style="{{ ($list->image_logo_height ? 'height: '.$list->image_logo_height.'px;' : '') }}">
+                                    <img src="{{ asset($list->image_logo) }}" class="img-medium img-product" style="{{ ($list->image_logo_height ? 'height: '.$list->image_logo_height.'px;' : '') }}">
                                 </div>
                             </div>
                             <br/>

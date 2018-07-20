@@ -1,7 +1,7 @@
 @extends('frontend._layout.master')
 
 @section('title')
-    Nutragen - About
+    About
 @endsection
 
 @section('style')
@@ -25,26 +25,21 @@
             z-index: -1;
         }
 
-        @media(min-width: 992px)
-        {
-            .translate-up{
-                position: relative;
-                bottom: 120px;
-            }
-        }
-
         @media(max-width: 991px)
-
         {
-            .mobile-white-background
+            .mobile-version-white
             {
-                background-color: white;
+                background-color: white !important;
             }
 
-            .wheat > div
+            .mobile-version-white .white-color
             {
+                color: black !important;
+            }
 
-                bottom: -245px;
+            .wheat
+            {
+                display: none;
             }
         }
 
@@ -54,10 +49,28 @@
             padding-top: 70px;
         }
 
-        .principles .path-dots{
+        .principles .circle-content{
             margin-top: 40px;
             margin-bottom: 40px;
             text-align: center;
+            position: relative;
+        }
+
+        .principles .circle-content div.path-dots
+        {
+            position: absolute;
+            width: 80%;
+            overflow: hidden;
+        }
+
+        .principles .circle-content div.path-block
+        {
+            background-color: #f7b733;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
         }
 
         .circle .name
@@ -65,7 +78,7 @@
             height: 30px;
         }
 
-        .principles .path-dots img.circle{
+        .principles .circle-content img.circle{
             height: 60px;
             margin: auto;
             -webkit-filter: drop-shadow(8px 8px 10px black);
@@ -84,20 +97,13 @@
             background-color: white;
             border-radius: 10px;
             margin: 20px 5px;
-            padding: 0px 5px;
+            padding: 15px 5px;
 
         }
 
         @media (min-width: 992px)
         {
-            .principles .path-dots{
-                background-image: url(frontend/images/fresh-dots.png);
-                background-repeat: no-repeat, repeat;
-                background-size: 80%;
-                background-position: 50% 2%;
-            }
-
-            .principles .path-dots div.circle
+            .principles .circle-content div.circle
             {
                 /*text-align: center;*/
 
@@ -131,27 +137,27 @@
                 font-weight: 800;
             }
 
-            .principles .path-dots img.circle.f{
+            .principles .circle-content img.circle.f{
                 position: relative;
                 top: 24px;
             }
 
-            .principles .path-dots img.circle.r{
+            .principles .circle-content img.circle.r{
                 position: relative;
                 top: 11px;
             }
 
-            .principles .path-dots img.circle.e{
+            .principles .circle-content img.circle.e{
                 position: relative;
                 top: 36px;
             }
 
-            .principles .path-dots img.circle.s{
+            .principles .circle-content img.circle.s{
                 position: relative;
                 top: 6px;
             }
 
-            .principles .path-dots img.circle.h{
+            .principles .circle-content img.circle.h{
                 position: relative;
                 top: 19px;
             }
@@ -181,21 +187,39 @@
                 max-width: 65%;
                 margin: 20px 17px !important;
             }
+
+            .path-dots, .path-block
+            {
+                display: none;
+            }
         }
 
+        .path-block {
+            animation-delay: 0.75s;
+            -webkit-animation-delay: 0.75s;
+            animation-duration: 2.5s;
+            -webkit-animation-duration: 2.5s;
+            animation-timing-function: linear;
+            -webkit-animation-timing-function: linear;
+        }
         .aniview-f {
+            animation-delay: 0.5s;
             -webkit-animation-delay: 0.5s;
         }
         .aniview-r {
+            animation-delay: 1s;
             -webkit-animation-delay: 1s;
         }
         .aniview-e {
+            animation-delay: 1.5s;
             -webkit-animation-delay: 1.5s;
         }
         .aniview-s {
+            animation-delay: 2s;
             -webkit-animation-delay: 2s;
         }
         .aniview-h {
+            animation-delay: 2.5s;
             -webkit-animation-delay: 2.5s;
         }
 
@@ -209,6 +233,13 @@
             $('.aniview-f, .aniview-r, .aniview-e, .aniview-s, .aniview-h').AniView();
         });
     </script>
+@endsection
+
+@section('meta')
+<meta name="og:title" content="{{ $about_meta_name->value }}"/>
+<meta name="og:url" content="{{ $about_meta_url->value }}"/>
+<meta name="og:image" content="{{ asset($about_meta_image->value) }}"/>
+<meta name="og:description" content="{{ $about_meta_description->value }}"/>
 @endsection
 
 @section('content')
@@ -241,8 +272,8 @@
             </div>
 
             <div class="aniview" data-av-animation="fadeInRight">
-                <div class="row mini-spacing justify-content-end">
-                    <div class="col-lg-6 text-center mobile-white-background">
+                <div class="row mini-spacing justify-content-end mobile-version-white">
+                    <div class="col-lg-6 text-center ">
                         <h2 class="red-color">
                             Our Vision
                         </h2>
@@ -255,8 +286,8 @@
             </div>
 
             <div class="aniview" data-av-animation="fadeInRight">
-                <div class="row mini-spacing justify-content-end">
-                    <div class="col-lg-6 text-center mobile-white-background">
+                <div class="row mini-spacing justify-content-end mobile-version-white">
+                    <div class="col-lg-6 text-center ">
                         <h2 class="red-color">
                             Our Mission
                         </h2>
@@ -268,7 +299,7 @@
             </div>
 
             <div class="aniview" data-av-animation="fadeIn">
-                <div class="row mini-spacing">
+                <div class="row mini-spacing mobile-version-white">
                     <div class="col-lg-6 text-center">
                         <img src="{{ asset('frontend/images/delivering-the-good-life.png') }}" class="img-large translate-up">
                     </div>
@@ -292,7 +323,11 @@
             </div>
 
             <div class="aniview" data-av-animation="fadeInUp">
-                <div class="row justify-content-center path-dots">
+                <div class="row justify-content-center circle-content">
+                    <div class="path-dots">
+                        <img src="{{ asset('frontend/images/fresh-dots.png') }}" style="width:100%" class="aniview" data-av-animation="default">
+                        <div style="" class="aniview path-block" data-av-animation="slideOutRight"></div>
+                    </div>
                     <div class="circle">
                         <div class="logo">
                             <div class="aniview-f" data-av-animation="bounceIn">

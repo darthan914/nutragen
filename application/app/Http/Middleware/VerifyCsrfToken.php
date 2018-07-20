@@ -29,6 +29,7 @@ class VerifyCsrfToken extends Middleware
         '/pr/noteAudit',
         '/pr/getSpkItem',
 
+        '*/page/get',
         '*/config/update',
     ];
 }
