@@ -42,6 +42,11 @@
             {
                 color: black !important;
             }
+
+            .img-good-delivering
+            {
+                text-align: center !important;
+            }
         }
 
         p.quote
@@ -225,6 +230,11 @@
             {
                 display: none;
             }
+
+            /*.principles .circle-content img.circle{
+                height: 48px;
+                margin: 0.5em;
+            }*/
         }
 
         .path-block {
@@ -409,7 +419,7 @@
                 </div>
             </div>
             <div class="row mini-spacing justify-content-end mobile-version-white">
-                <div class="col-lg-6 text-right">
+                <div class="col-lg-6 text-right img-good-delivering">
                     <div class="aniview" data-av-animation="fadeInRight">
                         <img src="{{ asset('frontend/images/delivering-the-good-life.png') }}" class="img-large">
                     </div>
@@ -704,7 +714,7 @@
             <div class="container">
                 <div class="row mini-spacing">
                     @foreach($product as $list)
-                    <div class="col-lg-3 text-center">
+                    <div class="col-lg-4 text-center">
                         <div class="logo">
                             <div class="aniview" data-av-animation="fadeInDown">
                                 <div class="name">
@@ -733,6 +743,9 @@
             <h2 class="heading-underline-orange text-center red-color spacing">
                 Pick, Click, Enjoy!
             </h2>
+            <p style="text-align: center;">
+                Besides traditional and modern market, now we are also  available on Indonesia's nationwide online market. Find us at :
+            </p>
             <div class="container">
                 <div class="aniview" data-av-animation="fadeIn">
                     <p class="text-center">

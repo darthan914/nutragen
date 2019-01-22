@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
             $ecommerce = Ecommerce::all();
             $advertisment = Advertisment::where('flag_publish', 1)->inRandomOrder()->first();
 
-            $data_global = '';
+            $data_global = array();
             foreach ($global as $list) {
                 eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                 $data_global[] = [$list->for];
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $home = Page::where('page', 'HOME')->get();
 
-                $data_home = '';
+                $data_home = array();
                 foreach ($home as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_home[] = [$list->for];
@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $about = Page::where('page', 'ABOUT')->get();
 
-                $data_about = '';
+                $data_about = array();
                 foreach ($about as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_about[] = [$list->for];
@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $product = Page::where('page', 'PRODUCT')->get();
 
-                $data_product = '';
+                $data_product = array();
                 foreach ($product as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_product[] = [$list->for];
@@ -75,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $distribution = Page::where('page', 'DISTRIBUTION')->get();
 
-                $data_distribution = '';
+                $data_distribution = array();
                 foreach ($distribution as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_distribution[] = [$list->for];
@@ -87,7 +87,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $service = Page::where('page', 'SERVICE')->get();
 
-                $data_service = '';
+                $data_service = array();
                 foreach ($service as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_service[] = [$list->for];
@@ -99,7 +99,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $news = Page::where('page', 'NEWS')->get();
 
-                $data_news = '';
+                $data_news = array();
                 foreach ($news as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_news[] = [$list->for];
@@ -111,7 +111,7 @@ class AppServiceProvider extends ServiceProvider
             {
                 $contact = Page::where('page', 'CONTACT')->get();
 
-                $data_contact = '';
+                $data_contact = array();
                 foreach ($contact as $list) {
                     eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
                     $data_contact[] = [$list->for];

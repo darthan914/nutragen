@@ -248,7 +248,7 @@ class NewsController extends Controller
         $index->title        = $request->title;
         $index->description  = $request->description;
         $index->content      = $request->content;
-        $index->photo        = $request->photo;
+        $index->photo        = $request->photo ?? $index->photo;
         $index->flag_publish = $request->flag_publish;
         $index->author       = $request->author;
         $index->id_updated   = Auth::id();

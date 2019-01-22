@@ -63,11 +63,39 @@
             height: 100px;
         }
 
+        .change-content
+        {
+            cursor: pointer;
+            height: initial;
+        }
+
         /*end Detail Product*/
     </style>
 @endsection
 
 @section('script')
+
+    <script type="text/javascript">
+        $(function(){
+            $(".change-content").click(function() {
+                var image_logo = $(this).data('image_logo');
+                var image_logo_height = $(this).data('image_logo_height');
+                var description = $(this).data('description');
+                var image_product = $(this).data('image_product');
+
+                $(".output-content").fadeOut('fast', function() {
+                    $(".output-content .output-image_logo").attr('src', image_logo).css('height', image_logo_height);
+                    $(".output-content .output-description").html(description);
+                    $(".output-content .output-image_product").attr('src', image_product);
+                    $(".output-content").fadeIn();
+                });
+
+                $('html, body').animate({
+                    scrollTop: $("#product").offset().top
+                }, 2000);
+            });
+        });
+    </script>
 
 @endsection
 
@@ -80,14 +108,19 @@
 
 @section('content')
     <div class="content">
-        <div class="product bootstrap mini-spacing">
+        {{-- <div class="product bootstrap mini-spacing">
             <h2 class="heading-underline text-center white-color">
                 Our Product
             </h2>
             <div class="container">
                 <div class="row mini-spacing">
                     @foreach($product as $list)
-                    <div class="col-lg-3 text-center">
+                    <div class="col-lg-3 text-center change-content" 
+                        data-image_logo="{{ asset($list->image_logo) }}" 
+                        data-image_logo_height="{{ $list->image_logo_height ? $list->image_logo_height.'px' : 'initial' }}" 
+                        data-description="{{ $list->description }}" 
+                        data-image_product="{{ asset($list->image_product) }}"
+                    >
                         <div class="logo">
                             <div class="aniview" data-av-animation="fadeInDown">
                                 <div class="name">
@@ -109,28 +142,49 @@
             <img src="{{ asset('frontend/images/bottom-round-shape.png') }}" width="100%">
         </div>
 
-        <div class="detail-product bootstrap">
+        <div class="detail-product bootstrap" id="product">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center output-content">
                     <div class="col-md-6 text-center">
                         <div class="logo">
-                            <img src="{{ asset('frontend/images/gofress-logo.png') }}" class="name"> <br/>
+                            <img src="{{ asset($getFirstProduct->image_logo) }}" class="name output-image_logo" style="height: {{ $getFirstProduct->image_logo_height ? $getFirstProduct->image_logo_height.'px' : 'initial' }}"> <br/>
                         </div>
-                        <div class="text-center mini-spacing">
-                            <p>
-                                Now you can have an instantly fresh breath in no time, thanks to Go Fress. A modern and innovative film strips candy with 6 fresh flavors of <b>Strawberry</b>, <b>Mango</b>, <b>Grape</b>,<br/>
-                                <b>Orange</b>, <b>Lemon</b> and <b>The Original Peppermint</b>. Uniquely refreshing!<br/>
-                                <br/>
-                                <a href="#" class="orange-color"><b>Visit GoFress Website</b></a>
-                            </p>
+                        <div class="text-center mini-spacing output-description">
+                            {!! $getFirstProduct->description !!}
                         </div>
                         
                     </div>
 
                     <div class="col-md-6 text-center">
-                            <img src="{{ asset('frontend/images/gofress-strips.png') }}" width="100%"> <br/>
+                            <img src="{{ asset($getFirstProduct->image_product) }}" width="100%" class="output-image_product"> <br/>
                     </div>
                 </div>
+            </div>
+        </div> --}}
+
+
+        <div class="detail-product bootstrap" id="product">
+            <h2 class="heading-underline text-center red-color">
+                Our Product
+            </h2>
+            <div class="container">
+                @foreach($product as $list)
+                <div class="row align-items-center output-content">
+                    <div class="col-md-6 text-center">
+                        <div class="logo">
+                            <img src="{{ asset($list->image_logo) }}" class="name output-image_logo" style="height: {{ $list->image_logo_height ? $list->image_logo_height.'px' : 'initial' }}"> <br/>
+                        </div>
+                        <div class="text-center mini-spacing output-description">
+                            {!! $list->description !!}
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-md-6 text-center">
+                            <img src="{{ asset($list->image_product) }}" width="100%" class="output-image_product"> <br/>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
 

@@ -32,7 +32,7 @@ class PageController extends Controller
     public function home()
     {
     	$license = License::where('flag_publish', 1)->get();
-    	$product = Product::where('flag_publish', 1)->take(4)->get();
+    	$product = Product::where('flag_publish', 1)->get();
     	$ecommerce = Ecommerce::where('flag_publish', 1)->get();
 
     	return view('frontend.home', compact('license', 'product', 'ecommerce'));
@@ -45,9 +45,11 @@ class PageController extends Controller
 
     public function product()
     {
-    	$product = Product::where('flag_publish', 1)->take(4)->get();
+    	$product = Product::where('flag_publish', 1)->get();
 
-    	return view('frontend.product', compact('product'));
+        $getFirstProduct = Product::where('flag_publish', 1)->first();
+
+    	return view('frontend.product', compact('product', 'getFirstProduct'));
     }
 
     public function distribution()
@@ -65,7 +67,7 @@ class PageController extends Controller
 
     public function news()
     {
-    	$news    = News::where('flag_publish', 1)->paginate(3);
+    	$news    = News::where('flag_publish', 1)->orderBy('created_at', 'DESC')->paginate(3);
     	$latest  = News::where('flag_publish', 1)->orderBy('created_at', 'DESC')->take(10)->get();
     	$archive = News::where('flag_publish', 1)->select(DB::raw('DATE(created_at) as created_at'))->groupBy(DB::raw('DATE(created_at)'))->take(10)->get();
 

@@ -22,7 +22,7 @@ class DashboardController extends Controller
     
     public function index(Request $request)
     {
-        $year = '';
+        $year = array();
         for ($i=2000; $i <= (int)date('Y') ; $i++) { 
             $year[] = $i; 
         }

@@ -10,8 +10,9 @@
 
 		<link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"></link>
 		<link href="{{ asset('frontend/fonts/quicksand.css') }}" rel="stylesheet"></link>
-		<link href="{{ asset('frontend/fonts/satisfy.css') }}" rel="stylesheet"></link>
+		<link href="{{ asset('frontend/fonts/Roboto.css') }}" rel="stylesheet"></link>
 		<link href="{{ asset('frontend/fonts/nunito.css') }}" rel="stylesheet"></link>
+		<link href="{{ asset('frontend/fonts/roboto.css') }}" rel="stylesheet"></link>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 		<title>{{ $global_website_name->value }} - @yield('title')</title>
@@ -24,7 +25,7 @@
 
 			h1, h2, h4
 			{
-				font-family: 'Satisfy';
+				font-family: 'Roboto';
 				color: #42474c;
 				font-size: 55px;
 				margin-bottom: 0;
@@ -317,7 +318,7 @@
 				
 				.img-large
 				{
-					width: 100%;
+					width: 90%;
 				}
 
 				.img-medium
@@ -528,8 +529,9 @@
 						<div class="col-md-3 mini-spacing">
 							<p>
 								<b>Follow Us</b> <br/>
-								<a href="https://www.instagram.com/nutragenofficial/"><img src="{{ asset('frontend/images/instagram-logo.png') }}" height="50px"></a>
-								<a href="https://facebook.com/nutragenofficial/"><img src="{{ asset('frontend/images/facebook-logo.png') }}" height="50px"></a><br/>
+								<a href="https://www.instagram.com/nutragenofficial/"><img src="{{ asset('frontend/images/instagram-logo.png') }}" height="45px"></a>
+								<a href="https://facebook.com/nutragenofficial/"><img src="{{ asset('frontend/images/facebook-logo.png') }}" height="45px"></a>
+								<a href="https://www.linkedin.com/in/nutragen-global-404849152/"><img src="{{ asset('frontend/images/linkedin-logo.png') }}" height="45px"></a><br/>
 
 								<b>For Inquiry</b> <br/>
 								{!! $global_footer_inqury->value !!}<br/>

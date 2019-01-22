@@ -88,12 +88,12 @@
 
                             <div class="news-title">
                                 <h4>
-                                    {{ $news->title }}
+                                    {!! $news->title !!}
                                 </h4>
                             </div>
 
                             <div class="news-content">
-                                {{ $news->content }}
+                                {!! $news->content !!}
                             </div>
                         </div>
                     </div>

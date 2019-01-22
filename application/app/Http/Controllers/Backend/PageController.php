@@ -27,7 +27,7 @@ class PageController extends Controller
 	{
 		$index = Page::all();
 
-        $data = '';
+        $data = array();
         foreach ($index as $list) {
             eval("\$".$list->for." = App\Models\Page::find(".$list->id.");");
             $data[] = [$list->for];

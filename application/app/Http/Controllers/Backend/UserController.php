@@ -153,6 +153,10 @@ class UserController extends Controller
             return $html;
         });
 
+        $datatables->editColumn('leader', function ($index) {
+            return $index->getLeader->name ?? '-';
+        });
+
         $datatables->editColumn('id_role', function ($index) {
             return $index->getRole->name;
         });
@@ -252,7 +256,7 @@ class UserController extends Controller
     public function edit($id)
     {
     	$config    = Config::all();
-        $data = '';
+        $data = array();
         foreach ($config as $list) {
             eval("\$".$list->for." = App\Models\Config::find(".$list->id.");");
             $data[] = $list->for;
@@ -493,7 +497,7 @@ class UserController extends Controller
         }
 
 
-        return redirect()->route('backend.home')->with('success', 'Masuk sebagai '. $index->fullname);
+        return redirect()->route('backend.home')->with('success', 'Login as '. $index->name);
     }
 
     public function leave()

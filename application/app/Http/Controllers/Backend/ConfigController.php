@@ -32,7 +32,7 @@ class ConfigController extends Controller
         $role = Role::all();
         $user     = User::all();
 
-        $data = '';
+        $data = array();
         foreach ($index as $list) {
             eval("\$".$list->for." = App\Models\Config::find(".$list->id.");");
             $data[] = [$list->for];
